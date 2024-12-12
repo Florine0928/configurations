@@ -1,6 +1,8 @@
 *
 !.gitignore
 !*/
+!nvim/*
+!neofetch/*
 !Wallpapers/*
 !Scripts/*
 !hypr/*
