@@ -2,7 +2,7 @@ map ctrl+c copy_to_clipboard
 map ctrl+v paste_from_clipboard
 shell fish
 
-
+font_size 11.4
 
 # BEGIN_KITTY_THEME
 # Gruvbox Light
