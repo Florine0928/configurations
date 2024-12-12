@@ -1,6 +1,7 @@
 *
 !.gitignore
 !*/
+!Wallpapers/*
 !Scripts/*
 !hypr/*
 !kitty/*
