@@ -1,0 +1,62 @@
+/* General Waybar Styles */
+#waybar {
+    background-color: #ebdbb2;
+    border: 2px solid #282828;
+    font-family: "FiraCode Nerd Font Bold";
+    font-weight: bold;
+    font-size: 14px;
+    color: #282828;
+    border-radius: 10px;
+}
+
+/* Module Styles */
+#waybar .module {
+    padding: 1px;
+    padding-right: 10px;
+    border-radius: 10px;;
+}
+
+#workspaces{
+    background: rgba(23, 23, 23, 0.0);
+        color: #282828;
+        box-shadow: none;
+        text-shadow: none;
+        border-radius: 0;
+        transition: 0.2s ease;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+    }
+
+    #workspaces button {
+        background: rgba(23, 23, 23, 0.0);
+            color: #282828;
+            box-shadow: none;
+            text-shadow: none;
+            border-radius: 10px;
+            transition: 0.2s ease;
+            padding-left: 6px;
+            padding-right: 6px;
+            animation: ws_normal 20s ease-in-out 1; 
+        }
+        
+        
+        
+        #workspaces button.active {
+        
+         
+          /* background-image: url("/home/anik/Documents/bar1.png");*/
+            color: #282828;   
+            transition: all 0.3s ease;
+            padding-left: 5px;
+            padding-right: 7px;
+          /*  transition: all 0.4s cubic-bezier(.55,0.68,.48,1.682); */
+        }
+        
+        #workspaces button:hover {
+            background: none;
+            /* color: #282828;*/
+            animation: ws_hover 20s ease-in-out 1;
+            transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+        }
+

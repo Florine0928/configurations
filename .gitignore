@@ -1,4 +1,6 @@
 *
+ags
+ags/*
 !.gitignore
 !*/
 !nvim/*
@@ -6,4 +8,5 @@
 !Wallpapers/*
 !Scripts/*
 !hypr/*
+!waybar/*
 !kitty/*

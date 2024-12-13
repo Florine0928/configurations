@@ -1,0 +1,72 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+   "margin-left": 6,
+ "margin-right": 6,
+ "margin-top": 6,
+ "margin-bottom": 0,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+
+	"modules-left": ["custom/smallspacer","hyprland/workspaces","custom/spacer","mpris"],
+	"modules-center": ["custom/padd","custom/l_end","custom/r_end","hyprland/window","custom/padd"],
+	"modules-right": ["custom/padding","clock","custom/padding"],
+
+"mpris": {
+	"format": "{player_icon} {dynamic}",
+	"format-paused": "<span color='grey'>{status_icon} {dynamic}</span>",
+	"max-length": 99,
+	"player-icons": {
+		"default": "⏸",
+		"mpv": "🎵"
+	},
+	"status-icons": {
+		"paused": "▶" 
+	},
+	"ignored-players": ["firefox"]
+},
+
+"custom/padding": {
+    "exec": "",
+    "interval": 60,
+    "format": "<span style='margin: 5px 10px 5px 10px;'> </span>"
+},
+
+"hyprland/workspaces": {
+	"format": "{icon}",
+	"format-icons": {
+	"active": "",
+	"default": ""
+	},
+},
+
+
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "rotate": 0,
+        "marging": -10,
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+}
