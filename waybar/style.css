@@ -1,13 +1,16 @@
 /* General Waybar Styles */
 #waybar {
     background-color: #ebdbb2;
-    border: 2px solid #282828;
+    border-bottom: 1px solid #282828;
     font-family: "FiraCode Nerd Font Bold";
     font-weight: bold;
     font-size: 14px;
     color: #282828;
-    border-radius: 10px;
+    border-radius: 0px;
 }
+
+/* #282828 */
+/* #ebdbb2 */
 
 /* Module Styles */
 #waybar .module {

@@ -2,16 +2,16 @@
     "layer": "top",
     "position": "top",
     "mod": "dock",
-   "margin-left": 6,
- "margin-right": 6,
- "margin-top": 6,
+   "margin-left": 0,
+ "margin-right": 0,
+ "margin-top": 0,
  "margin-bottom": 0,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
 
-	"modules-left": ["custom/smallspacer","hyprland/workspaces","custom/spacer","mpris"],
+	"modules-left": ["hyprland/workspaces","mpris"],
 	"modules-center": ["custom/padd","custom/l_end","custom/r_end","hyprland/window","custom/padd"],
 	"modules-right": ["custom/padding","clock","custom/padding"],
 
@@ -42,8 +42,6 @@
 	"default": ""
 	},
 },
-
-
 
     "clock": {
         "format": "{:%I:%M %p}",
