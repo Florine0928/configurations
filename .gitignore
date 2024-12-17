@@ -1,8 +1,10 @@
 *
 ags
 ags/*
+qtile/__pycache__/*
 !.gitignore
 !*/
+!qtile/*
 !nvim/*
 !neofetch/*
 !Wallpapers/*
