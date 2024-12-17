@@ -3,4 +3,4 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 colorscheme gruvbox
-set background=light
+set background=dark
