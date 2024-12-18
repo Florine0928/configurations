@@ -43,6 +43,7 @@ terminal = guess_terminal() # or kitty
 
 keys = [
     Key([mod], "q", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "b", lazy.spawn("blueman-manager")),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
