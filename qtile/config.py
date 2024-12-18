@@ -30,6 +30,13 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.dgroups import simple_key_binder
+from libqtile.widget import backlight
+from libqtile import hook
+import subprocess
+
+@hook.subscribe.startup
+def startup():
+    subprocess.run(["gomgr", "-r", "wallpaper"])
 
 mod = "mod4"
 terminal = guess_terminal() # or kitty
@@ -42,8 +49,7 @@ keys = [
     Key([mod], "space", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod], "m", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod, "shift"], "r", lazy.spawn("sh -c 'GTK_THEME=Gruvbox-Dark wofi --show drun'")),
-    Key([mod], "r", lazy.spawncmd()),
+    Key([mod], "r", lazy.spawn("sh -c 'GTK_THEME=Gruvbox-Dark wofi --show drun'")),
     Key(["shift"], "Print", lazy.spawn("bash -c '~/.config/Scripts/screenshot-grim-selection.sh'")),
     Key([], "Print", lazy.spawn("bash -c '~/.config/Scripts/screenshot-grim.sh'")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-"), desc="Lower Volume by 5%"),
@@ -67,7 +73,14 @@ groups = [
 ]
 
 layout_theme = {"border_width": 2,"margin": 8,"border_focus": "8ec07c","border_normal": "689d6a"}
-floating_layout = layout.Floating(**layout_theme,float_rules=[*layout.Floating.default_float_rules,Match(wm_class='confirmreset'),]) # fuck you blue border you're gone 
+floating_layout = layout.Floating(
+    **layout_theme,
+    float_rules=[
+        *layout.Floating.default_float_rules,
+        Match(wm_class='confirmreset'),
+        Match(wm_class='blueman-manager'),
+    ]
+)
 layouts = [
     layout.Columns(border_width=1, margin=1,margin_on_single=6, border_focus="8ec07c", border_normal="928375", border_on_single=True),
     layout.Floating(**layout_theme),
@@ -91,12 +104,10 @@ extension_defaults = widget_defaults.copy()
 
 screens = [Screen(top=bar.Bar([
                 widget.GroupBox(fontsize=20),
-                widget.Prompt(),
                 widget.WindowName(max_chars=50),
                 widget.StatusNotifier(),
                 widget.Systray(),
-                widget.TextBox(text="󰣛",fontsize=20),
-                widget.TextBox(text="Fedora 41"),
+                widget.Bluetooth(),
                 widget.Sep(size_percent=50),
                 widget.TextBox(text="",fontsize=18),
                 widget.Memory(format='{MemUsed: .0f}{mm}'),
