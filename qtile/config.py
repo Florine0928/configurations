@@ -25,45 +25,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, qtile, widget, hook
+from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.dgroups import simple_key_binder
 from libqtile.widget import backlight
-import os, subprocess
-home_dir = os.path.expanduser("~")
-
-def load_colors(cache_path):
-    colors = []
-    try:
-        with open(cache_path, 'r') as file:
-            for _ in range(16):
-                line = file.readline().strip()
-                if not line:
-                    break
-                colors.append(line)
-        colors.append('#ffffff') 
-        if 'lazy' in globals() and hasattr(lazy, 'reload'):
-            lazy.reload()
-    except FileNotFoundError:
-        print(f"Error: File not found at {cache_path}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    return colors
-
-cache = os.path.join(os.path.expanduser("~"), ".cache", "wal", "colors")
-colors = load_colors(cache)
-
+from libqtile import hook
+import subprocess
 
 @hook.subscribe.startup
 def startup():
     subprocess.run(["gomgr", "-r", "wallpaper"])
 
-
 mod = "mod4"
 terminal = guess_terminal() # or kitty
-barbordercolor = colors[4]
 
 keys = [
     Key([mod], "q", lazy.spawn(terminal), desc="Launch terminal"),
@@ -74,7 +50,7 @@ keys = [
     Key([mod], "space", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod], "m", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawn("sh -c 'GTK_THEME=WhiteSur-Dark wofi --show drun'")),
+    Key([mod], "r", lazy.spawn("sh -c 'GTK_THEME=Gruvbox-Dark wofi --show drun'")),
     Key(["shift"], "Print", lazy.spawn("bash -c '~/.config/Scripts/screenshot-grim-selection.sh'")),
     Key([], "Print", lazy.spawn("bash -c '~/.config/Scripts/screenshot-grim.sh'")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-"), desc="Lower Volume by 5%"),
@@ -85,7 +61,7 @@ keys = [
 for vt in range(1, 8):
     keys.append(Key(["control", "mod1"],f"f{vt}",lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),))
 
-groups = [ # Has Nerd Icons, if you can't see them, then ofc install Nerd Fonts, and also, VSCode still won't see em, but its normal.
+groups = [
     Group(""),
     Group(""),
     Group(""),
@@ -97,7 +73,7 @@ groups = [ # Has Nerd Icons, if you can't see them, then ofc install Nerd Fonts,
     Group(""),
 ]
 
-layout_theme = {"border_width": 2,"margin": 8,"border_focus": colors[3],"border_normal": colors[15]}
+layout_theme = {"border_width": 2,"margin": 8,"border_focus": "8ec07c","border_normal": "689d6a"}
 floating_layout = layout.Floating(
     **layout_theme,
     float_rules=[
@@ -107,21 +83,20 @@ floating_layout = layout.Floating(
     ]
 )
 layouts = [
-    layout.Columns(border_width=1, margin=1,margin_on_single=6, border_focus=colors[4], border_normal="928375", border_on_single=True),
+    layout.Columns(border_width=1, margin=1,margin_on_single=6, border_focus="8ec07c", border_normal="928375", border_on_single=True),
     layout.Floating(**layout_theme),
 ]
 
 widget_defaults = dict(
     font="FiraCode Nerd Font Bold",
-    foreground=colors[16],
-    background=colors[0],
+    foreground="#ebdbb2",
     fontsize=12,
     padding=8,
-    active=colors[16], # GroupBox Param
+    active="ebdbb2", # GroupBox Param
     block_highlight_text_color="8ec07c", # GroupBox Param
     highlight_color="8ec07c", # GroupBox Param
     inactive="928374", # GroupBox Param
-    this_current_screen_border=colors[4], # GroupBox Param, fucks sake! I scrambled to find this garbage, why is it so esoteric?
+    this_current_screen_border="#8ec07c", # GroupBox Param, fucks sake! I scrambled to find this garbage, why is it so esoteric?
                                           # for a fucking simple thing as hightlight color for workspace, should've just been activeworkspace_highlight...
     highlight_method='text', # GroupBox Param
 ) 
@@ -130,7 +105,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [Screen(top=bar.Bar([
                 widget.GroupBox(fontsize=20),
-                widget.WindowName(max_chars=50,foreground=colors[4]),
+                widget.WindowName(max_chars=50),
                 widget.StatusNotifier(),
                 widget.Systray(),
                 widget.Bluetooth(),
@@ -144,7 +119,7 @@ screens = [Screen(top=bar.Bar([
                 widget.TextBox(text="󰃰",fontsize=18),
                 widget.Clock(format="%Y/%m/%d %a %I:%M %p"),],35,background="#282828",
                 border_width=[0, 0, 2, 0],  # Draw top and bottom borders
-                border_color=[barbordercolor, barbordercolor, barbordercolor, barbordercolor]  # Borders are magenta
+                border_color=["8ec07c", "8ec07c", "8ec07c", "8ec07c"]  # Borders are magenta
         ),),]
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
@@ -157,9 +132,9 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
-cursor_warp = True
+cursor_warp = False
 auto_fullscreen = True
-focus_on_window_activation = "focus"
+focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 auto_minimize = True
