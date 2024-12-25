@@ -73,7 +73,7 @@ groups = [
     Group(""),
 ]
 
-layout_theme = {"border_width": 2,"margin": 8,"border_focus": "8ec07c","border_normal": "689d6a"}
+layout_theme = {"border_width": 2,"margin": 8,"border_focus": "#fabd2f","border_normal": "689d6a"}
 floating_layout = layout.Floating(
     **layout_theme,
     float_rules=[
@@ -83,20 +83,21 @@ floating_layout = layout.Floating(
     ]
 )
 layouts = [
-    layout.Columns(border_width=1, margin=1,margin_on_single=6, border_focus="8ec07c", border_normal="928375", border_on_single=True),
+    layout.Columns(border_width=1, margin=1,margin_on_single=6, border_focus="#fabd2f", border_normal="928375", border_on_single=True),
     layout.Floating(**layout_theme),
 ]
 
 widget_defaults = dict(
     font="FiraCode Nerd Font Bold",
     foreground="#ebdbb2",
+    background="#1d2021",
     fontsize=12,
     padding=8,
     active="ebdbb2", # GroupBox Param
-    block_highlight_text_color="8ec07c", # GroupBox Param
-    highlight_color="8ec07c", # GroupBox Param
+    block_highlight_text_color="#fabd2f", # GroupBox Param
+    highlight_color="#fabd2f", # GroupBox Param
     inactive="928374", # GroupBox Param
-    this_current_screen_border="#8ec07c", # GroupBox Param, fucks sake! I scrambled to find this garbage, why is it so esoteric?
+    this_current_screen_border="#fabd2f", # GroupBox Param, fucks sake! I scrambled to find this garbage, why is it so esoteric?
                                           # for a fucking simple thing as hightlight color for workspace, should've just been activeworkspace_highlight...
     highlight_method='text', # GroupBox Param
 ) 
@@ -119,7 +120,7 @@ screens = [Screen(top=bar.Bar([
                 widget.TextBox(text="󰃰",fontsize=18),
                 widget.Clock(format="%Y/%m/%d %a %I:%M %p"),],35,background="#282828",
                 border_width=[0, 0, 2, 0],  # Draw top and bottom borders
-                border_color=["8ec07c", "8ec07c", "8ec07c", "8ec07c"]  # Borders are magenta
+                border_color=["#fabd2f", "#fabd2f", "#fabd2f", "#fabd2f"]  # Borders are magenta
         ),),]
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),

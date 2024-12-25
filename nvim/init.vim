@@ -1,8 +1,8 @@
 call plug#begin()
-Plug 'morhetz/gruvbox'
+Plug 'danilo-augusto/vim-afterglow'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme afterglow
 set background=dark
 highlight Normal guibg=none
 highlight NonText guibg=none
